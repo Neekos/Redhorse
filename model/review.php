@@ -28,7 +28,7 @@
 		{
 		$db = Db::getConnection();
 
-		$sql = 'INSERT INTO review(username, dat, msg) VALUES (:username , NOW(), :msg)';
+		$sql = 'INSERT INTO review(username, msg) VALUES (:username , :msg)';
 
 		$result = $db->prepare($sql);
 

@@ -58,7 +58,6 @@
 		if (isiPad) $('#menu ul').addClass('no-transition');      
     });          
 </script>
->
     </div>
   </body>
 </html>

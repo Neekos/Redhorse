@@ -1,6 +1,7 @@
 <?php
 
 return [
+	'review/add' => 'review/add',
 	'review' => 'review/index',
 	'user/registration' => 'user/registration',
 	'user' => 'user/login',

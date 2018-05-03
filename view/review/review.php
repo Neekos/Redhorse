@@ -1,21 +1,16 @@
-<?php 
-	require_once ('template/header.php');
-
-	
- ?>
+<?php include('template/header.php'); ?>
 <h1>Гостевая книга</h1>
-	
-<div id="messages">
-</div>
+
+	<div id="messages">
+
+	</div>
 	
 <br>
 <h3>Добавить сообщение</h3>
 <!-- форма отправки сообщения -->
 
 <!-- проверка заполнения формы -->
-<script>
 
-</script>
 
 <!-- код формы -->
 <form id="myForm">
@@ -25,7 +20,7 @@
 			Имя пользователя:
 		</td>
 		<td>
-			<input id="username" name="username" style="width: 300px;">
+			<input id="username" name="username" style="width: 300px; border:1px solid black">
 		</td>
 	</tr>
 	<tr>
@@ -33,7 +28,7 @@
 			Сообщение:
 		</td>
 		<td>
-			<textarea id="msg" name="msg" style="width: 300px;"></textarea>
+			<textarea id="msg" name="msg" style="width: 300px; border:1px solid black"></textarea>
 		</td>
 	</tr>		
 	<tr>
@@ -46,74 +41,55 @@
 	</tr>
 </table>
 </form>
- 
-<script type="text/javascript">
 
-function splash()
-    {
-        if (document.myForm.username.value  =='')
-            {
-                alert ("Заполните имя пользователя!");
-                return false;   
-            }
-            
-        if (document.myForm.msg.value  =='')
-            {
-                alert ("Заполните текст сообщения!");
-                return false;   
-            }
-        
-        return true;   
-    }
-    
+<script>
  		function Show_messages(){
 
 		$.ajax({
-			url: "view/review/review.php";
+			url: "show.php",
 			cache:false,
 			success: function(html){
 				$("#messages").html(html);
 			}
 		});
-	} $(document).ready(function(){  
-  
-        show_messages();  
+
+		} 
+
+	$(document).ready(function(){  
+    
+        //Show_messages();  
           
         // контроль и отправка данных на сервер в фоновом режиме  
         // при нажатии на кнопку "отправить сообщение"  
-        $("#myForm").submit(function(){  
-          
+        $("#myForm").submit(function(e){  
+       e.preventDefault();
+       
             var name = $("#username").val();  
             var msg  = $("#msg").val();  
             if (name =='')  
             {  
                 alert ("Заполните имя пользователя!");  
-                return false;  
+                 return false;  
             }  
-            if (msg =='')  
-            {  
-                alert ("Заполните текст сообщения!");  
-                return false;  
-            }  
+             if (msg =='')  
+             {  
+                 alert ("Заполните текст сообщения!");  
+                 return false;  
+             }
   
-            $.ajax({  
-                type: "POST",  
-                url: "action.php",  
-                data: "username="+name+"&msg="+msg+"&action=add",  
-                success: function(msg){  
-                    show_messages();  
-               }  
-            });  
+             $.ajax({  
+                 type: "POST",  
+                 url: "/controllers/reviewController.php",  
+                 data: "username="+name+"&msg="+msg+"&action=add",  
+                 success: function(msg){  
+                     Show_messages();  
+                }  
+             });  
               
-            return false;  
+             return false;  
         });  
           
     });
 
  	</script>
- <?php 
-
-	require_once ('template/footer.php');
-
-	
- ?>
+    <?php include('template/footer.php'); ?>
