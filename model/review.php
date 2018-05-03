@@ -24,6 +24,20 @@
 			return $review;
 	}
 
+	public static function insertreview() 
+		{
+		$db = Db::getConnection();
+
+		$sql = 'INSERT INTO review(username, dat, msg) VALUES (:username , NOW(), :msg)';
+
+		$result = $db->prepare($sql);
+
+		$result->bindParam(':username', $username, PDO::PARAM_STR);
+		$result->bindParam(':msg', $msg, PDO::PARAM_STR);
+
+		return $result->execute();
+		}
+
 
 	
 }
