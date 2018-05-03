@@ -59,32 +59,7 @@
 
 		function ActionExcele(){
 
-		
-				$data = Services::getXLS('services/test.xlsx'); //извлеаем данные из XLS
-
-				$data_res= Services::convert_arr($data,'id', 0);
-				$data_res= Services::convert_arr($data, 'time', 1, $data_res);
-				$data_res= Services::convert_arr($data, 'price_vixod', 2, $data_res);
-				$data_res= Services::convert_arr($data, 'price_bud', 3, $data_res);
-				$data_res= Services::convert_arr($data, 'sum', 4, $data_res);
-				$data_res= Services::convert_arr($data, 'время', 6, $data_res);
-				$data_res= Services::convert_arr($data, 'цена', 7, $data_res);
-				$data_res= Services::convert_arr($data, 'Кол-во', 8, $data_res);
-				
-
-				$data2 = Services::getXLS('services/trener.xlsx');
-				$data_res2= Services::convert_arr($data2,'№', 0);
-				$data_res2= Services::convert_arr($data2, 'Имя', 1, $data_res2);
-				$data_res2= Services::convert_arr($data2, 'Фамилия', 2, $data_res2);
-				$data_res2= Services::convert_arr($data2, 'Стаж', 3, $data_res2);
-
-				$data3 = Services::getXLS('services/katanie.xlsx');
-				$data_res3 = Services::convert_arr($data3, '№', 0);
-				$data_res3 = Services::convert_arr($data3, 'Время', 1, $data_res3);
-				$data_res3 = Services::convert_arr($data3, 'Стоимость в выходные', 2, $data_res3);
-				$data_res3 = Services::convert_arr($data3, 'Стоимость в будни', 3, $data_res3);
-
-				$data4 = Services::getXLS('services/individzan.xlsx');
+				$data4 = Services::getXLS('exceleservices/individzan.xlsx');
 
 				//$data_res4 = Services::convert_arr($data4, 'title' , 0);
 				$data_res4 =Services::convert_arr($data4, 'id', 0);
