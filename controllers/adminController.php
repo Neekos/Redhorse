@@ -32,8 +32,49 @@
 				header("location: /");
 			}
 
-
+			$news = admin::news_get();
+			
 			require_once(ROOT. '/view/admin/news/view.php');
+
+			return true;
+		}
+
+		function ActionNewsAdd()
+		{
+			$userId = User::checkLogged();
+
+			$user = User::getUser($userId);
+
+			if(User::IsNotAdmin()){
+				header("location: /");
+			}
+
+			if (!empty($_POST)) {
+				$data = [];
+
+				if (!empty($_POST['title'])) {
+					$data['title'] = $_POST['title'];
+				}
+				if (!empty($_POST['discription'])) {
+					$data['discription'] = $_POST['discription'];
+				}
+				if (!empty($_POST['text'])) {
+					$data['text'] = $_POST['text'];
+				}
+
+				if (!empty($_FILES)) {
+					$res = photo::file_upload('img');
+					if (false !== $res) {
+						$data['img'] = $res;
+					}
+				}
+				if (isset($data['title']) && isset($data['discription']) && isset($data['text']) && isset($data['img'])) {
+					admin::new_insert($data);
+					header('location: /admin/news/');
+				}
+			}
+
+			require_once(ROOT. '/view/admin/news/add.php');
 
 			return true;
 		}

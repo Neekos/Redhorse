@@ -15,6 +15,8 @@ return [
 	'services/excele'=> 'services/excele',
 	'services' => 'services/services',
 
+
+	'admin/news/add' => 'admin/newsadd',
 	'admin/news' => 'admin/news',
 	'admin/galereya/add' => 'admin/galereyaadd',
 	'admin/galereya' => 'admin/galereya',

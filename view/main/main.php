@@ -109,7 +109,7 @@
                 <?php foreach ($photo as $value): ?>
                   <div class="col-1-4">
                     <div class="wrap-col">
-                      <a class="example-image-link" href="<?=$value['img'];?>" data-lightbox="example-set" data-title="Click the right half of the image to move forward.">
+                      <a class="example-image-link" href="<?=$value['img'];?>" data-lightbox="example-set" data-title="Нажмите на край картинки что бы смотреть дальше.">
                         <div class="zoom-container">
                           <div class="zoom-caption">
                             <div class="caption-inner">
@@ -132,7 +132,7 @@
           <div class="zerogrid">
             <div class="row">
               <h2 class="header t-center">Новости</h2>
-              <?php foreach ($article as $art): ?>
+              <?php foreach ($news as $art): ?>
                 <div class="col-1-3">
                   <div class="wrap-col ">
                     <div class="item">

@@ -14,27 +14,34 @@
                     <thead> 
                     <tr> 
                     <th>№</th> 
-                    <th>Заголовок</th> 
+                    <th>Заголовок</th>
+                    <th>Описание</th>
+                    <th>Содержание</th>
+                    <th>фото</th>  
                     <th>Время публикации</th> 
-                     
+                    <th></th> 
                     <th></th>  
                     </tr> 
                     </thead> 
                     <tbody> 
-                   
+                    <?php foreach ($news as $value): ?>
                     <tr> 
                    
-                    <td></td>
-                    <td></td>
-                    <td></td> 
-                     
-                    <td> <a href=""><button class="btn btn-primary" >Написать </button></a></td> 
+                    <td><?=$value['id'] ?></td>
+                    <td><?=$value['title'] ?></td>
+                    <td><?=$value['discription'] ?></td> 
+                    <td><?=$value['text'] ?></td>
+                    <td><img src="<?=$value['img'] ?>" style="max-width: 150px;"></td>
+                    <td><?=$value['date_time'] ?></td>
+                    <td> <a href=""><button class="btn btn-primary" >Редактировать </button></a></td>
+                    <td> <a href=""><button class="btn btn-primary" >удалить </button></a></td> 
                     </tr> 
-                    
+                    <?php endforeach ?>
 
                     </tbody> 
                     </table> 
-                    </div> 
+                    </div>
+                    <a href="/admin/news/add/"> <input type="submit" name="add" value="Написать статью"> </a> 
                     </div> 
                 </div>
             </div>
