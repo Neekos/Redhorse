@@ -82,7 +82,7 @@
                 <div class="wrap-col item">
                   <h2 class="header"><a href="#">Добро пожаловать! мы рады вас видеть.</a></h2>
                   <p>Здесь предоставлена подробная информация нашего место положения, контакты и предоставляемые услуги.</p>
-                  <a href="#" class="button-1">Узнать больше</a>
+                  <a href="/contact/" class="button-1">Узнать больше</a>
                 </div>
               </div>
               <div class="col-1-2">
@@ -128,26 +128,25 @@
             </div>
           </div>
         </section>
-        <hr>
         <section class="content-box box-1 box-style-1"><!--Start Box-->
           <div class="zerogrid">
             <div class="row">
               <h2 class="header t-center">Новости</h2>
-              {% for item in article %}
-              <div class="col-1-3">
-                <div class="wrap-col ">
-                  <div class="item">
-                    <div class="zoom-container">
-                      <img src="/template/images/test.jpg">
-                    </div>
-                    <div class="item-content">
-                      <h3 class="item-header"><a href="{{ path_for('article.getOne', {id: item.id } ) }}">{{ item.title }}</a></h3>
-                      <p>{{item.discription}}</p><hr> <p>{{item.date_time}}</p>
+              <?php foreach ($article as $art): ?>
+                <div class="col-1-3">
+                  <div class="wrap-col ">
+                    <div class="item">
+                      <div class="zoom-container">
+                        <img src="<?=$art['img'] ?>">
+                      </div>
+                      <div class="item-content">
+                        <h3 class="item-header"><a href="#"><?=$art['title'] ?></a></h3>
+                        <p><?=$art['discription'] ?></p><hr> <p><?=$art['date_time'] ?></p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              {% endfor %}
+              <?php endforeach ?>
             </div>
           </div>
         </section>
