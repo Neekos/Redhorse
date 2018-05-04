@@ -48,11 +48,48 @@
 				header("location: /");
 			}
 
+			$photo = admin::photo_get();
+
 
 			require_once(ROOT. '/view/admin/galereya/view.php');
 
 			return true;
 		}
+
+		function ActionGalereyaAdd()
+		{
+			$userId = User::checkLogged();
+
+			$user = User::getUser($userId);
+
+			if(User::IsNotAdmin()){
+				header("location: /");
+			}
+
+			if (!empty($_POST)) {
+				$data = [];
+
+				if (!empty($_POST['title'])) {
+					$data['title'] = $_POST['title'];
+				}
+
+				if (!empty($_FILES)) {
+					$res = photo::file_upload('img');
+					if (false !== $res) {
+						$data['img'] = $res;
+					}
+				}
+				if (isset($data['title']) && isset($data['img'])) {
+					admin::photo_insert($data);
+					header('location: /admin/galereya/');
+				}
+			}
+
+			require_once(ROOT. '/view/admin/galereya/add.php');
+
+			return true;
+		}
+
 		function ActionServices()
 		{
 			$userId = User::checkLogged();

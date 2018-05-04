@@ -19,7 +19,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="call3">
-                                <a href="#" class="call2">Записаться</a>
+                               
                             </div>
                             </div>
                         </div>
@@ -34,7 +34,7 @@
                       <div class="container">
                             <div class="row">
                                 <div class="call3">
-                                <a href="#" class="call2">Записаться</a>
+                                
                             </div>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                       <div class="container">
                             <div class="row">
                                 <div class="call3">
-                                <a href="#" class="call2">Записаться</a>
+                                
                             </div>
                             </div>
                         </div>
@@ -106,10 +106,10 @@
             <div class="row">
               <h2 class="header t-center">Галерея</h2>
               <div class="row">
-                {% for item in image %}
+                <?php foreach ($photo as $value): ?>
                   <div class="col-1-4">
                     <div class="wrap-col">
-                      <a class="example-image-link" href="/template/images/photo1.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward.">
+                      <a class="example-image-link" href="<?=$value['img'];?>" data-lightbox="example-set" data-title="Click the right half of the image to move forward.">
                         <div class="zoom-container">
                           <div class="zoom-caption">
                             <div class="caption-inner">
@@ -118,12 +118,12 @@
                               </div>
                             </div>
                           </div>
-                          <img class="example-image" src="/template/images/photo1.jpg" alt=""/>
+                          <img class="example-image" src="<?=$value['img'];?>" alt=""/>
                         </div>
                       </a>
                     </div>
                   </div>
-                {% endfor %}
+                <?php endforeach ?>
               </div>
             </div>
           </div>

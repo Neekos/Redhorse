@@ -16,25 +16,27 @@
                     <th>№</th> 
                     <th>Заголовок</th> 
                     <th>Время публикации</th> 
-                     
+                    <th>Фото</th>
+                    <th></th>
                     <th></th>  
                     </tr> 
                     </thead> 
                     <tbody> 
-                   
+                    <?php foreach ($photo as $value): ?>
                     <tr> 
-                   
-                    <td></td>
-                    <td></td>
-                    <td></td> 
-                     
-                    <td> <a href=""><button class="btn btn-primary" >Написать </button></a></td> 
+                    <td><?=$value['id'] ?></td>
+                    <td><?=$value['title'] ?></td>
+                    <td><?=$value['date_time'] ?></td>
+                    <td><img src="<?=$value['img'] ?>" style="width: 140px; height: 140px;"></td> 
+                    <td> <a href=""><button class="btn btn-primary" >Редактировать </button></a></td>
+                    <td> <a href=""><button class="btn btn-primary" >Удалить </button></a></td> 
                     </tr> 
-                    
+                    <?php endforeach ?>
 
                     </tbody> 
                     </table> 
-                    </div> 
+                    </div>
+                    <a href="/admin/galereya/add/"> <input type="submit" name="add" value="Добавить фото"> </a> 
                     </div> 
                 </div>
             </div>
