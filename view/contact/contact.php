@@ -13,20 +13,10 @@
 			Форма обратной связи
 		</div>
 		<div class="panel-body">
-			<form  method="post" autocomplete="off">
-				<div class="form-group">
+			<form  id="form" autocomplete="off">
+			<div class="form-group">
 					<label for="name">Имя</label>
 					<input type="text" name="name" id="name" class="form-control" value="">
-						<span class="help-block"></span>
-				</div>
-				<div class="form-group">
-					<label for="surname">Фамилия</label>
-					<input type="text" name="surname" id="surname" class="form-control" value="">
-						<span class="help-block"> </span>
-				</div>
-				<div class="form-group">
-					<label for="middlename">Отчество</label>
-					<input type="text" name="middlename" id="middlename" class="form-control" value="">
 						<span class="help-block"></span>
 				</div>
 				<div class="form-group">
@@ -41,7 +31,7 @@
 				</div>
 				<div class="form-group">
 					<label for="message">Сообщение</label>
-					<textarea rows="10" cols="37" name="message" id="message" class="form-control">Писать тут!</textarea>
+					<textarea rows="10" cols="37" name="message" id="message" class="form-control" placeholder="Сообщение"></textarea>
 						<span class="help-block"></span>
 				</div>
 				<div class="form-group">
@@ -74,6 +64,29 @@
 			</div>	
 		</div>
 	</div>
+
+	<script type="text/javascript">
+		
+		$(document).ready(function(){  
+    
+        //Show_messages();  
+          
+        // контроль и отправка данных на сервер в фоновом режиме  
+        // при нажатии на кнопку "отправить сообщение"  
+        $("#form").submit(function(e){  
+       		e.preventDefault();
+             $.ajax({  
+                 type: "POST",  
+                 url: "contact.php",  
+                 data:$(this).serialize()}).done(function(){
+                 	alert("Спасибо за заявку! Скоро мы с вами свяжемся.");
+                 }) ; 
+              
+             return false;  
+        });  
+          
+    });
+	</script>
 <?php 
 	include('template/footer.php');
 ?>

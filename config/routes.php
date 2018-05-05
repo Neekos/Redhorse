@@ -1,7 +1,7 @@
 <?php
 
 return [
-	'review/add' => 'review/add',
+	'review/show' => 'review/show',
 	'review' => 'review/index',
 	'user/registration' => 'user/registration',
 	'user' => 'user/login',

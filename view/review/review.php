@@ -1,8 +1,11 @@
 <?php include('template/header.php'); ?>
 <h1>Гостевая книга</h1>
 
-	<div id="messages">
+	
+	<div id="mes">
 
+		
+	
 	</div>
 	
 <br>
@@ -10,86 +13,64 @@
 <!-- форма отправки сообщения -->
 
 <!-- проверка заполнения формы -->
+<script type="text/javascript">
+	
 
+</script>
 
 <!-- код формы -->
-<form id="myForm">
-<table border="1 px solid black">
-	<tr>
-		<td width="160">
-			Имя пользователя:
-		</td>
-		<td>
-			<input id="username" name="username" style="width: 300px; border:1px solid black">
-		</td>
-	</tr>
-	<tr>
-		<td width="160" valign="top">
-			Сообщение:
-		</td>
-		<td>
-			<textarea id="msg" name="msg" style="width: 300px; border:1px solid black"></textarea>
-		</td>
-	</tr>		
-	<tr>
-		<td width="160">
-			&nbsp;
-		</td>
-		<td>
-			<input id="btn" type="submit" value="Отправить сообщение">
-		</td>
-	</tr>
-</table>
-</form>
 
-<script>
- 		function Show_messages(){
+		<div class="panel-body">
+			<form  id="myform" autocomplete="off">
+			<div class="form-group">
+					<label for="username">Имя</label>
+					<input type="text" name="username" id="username" class="form-control" value="">
+						<span class="help-block"></span>
+				</div>
+					<label for="msg">Сообщение</label>
+					<textarea rows="10" cols="37" name="msg" id="msg" class="form-control" placeholder="Сообщение"></textarea>
+						<span class="help-block"></span>
+				</div>
+				<div class="form-group">
+					<button type="submit" name="register" class="btn btn-primary">Отправить</button>
+				</div>
+			</form>
+		</div>
+
+<script type="text/javascript">
+	function Show_messages(){
 
 		$.ajax({
-			url: "show.php",
+			url: "/view/review/show.php",
 			cache:false,
 			success: function(html){
-				$("#messages").html(html);
+				$("#mes").html(html);
 			}
 		});
 
 		} 
+</script>
 
-	$(document).ready(function(){  
+<script type="text/javascript">
+		
+		$(document).ready(function(){  
     
-        //Show_messages();  
+        Show_messages();  
           
         // контроль и отправка данных на сервер в фоновом режиме  
         // при нажатии на кнопку "отправить сообщение"  
-        $("#myForm").submit(function(e){  
-       e.preventDefault();
-       
-            var name = $("#username").val();  
-            var msg  = $("#msg").val();  
-            if (name =='')  
-            {  
-                alert ("Заполните имя пользователя!");  
-                 return false;  
-            }  
-             if (msg =='')  
-             {  
-                 alert ("Заполните текст сообщения!");  
-                 return false;  
-             }
-  
+        $("#myform").submit(function(e){  
+       		e.preventDefault();
              $.ajax({  
                  type: "POST",  
-                 url: "/controllers/reviewController.php",  
-                 data: "username="+name+"&msg="+msg+"&action=add",  
-                 success: function(msg){  
-                     Show_messages();  
-                }  
-             });  
+                 url: "review.php",  
+                 data:$(this).serialize()}).done(function(){
+                 	Show_messages();
+                 }) ; 
               
              return false;  
         });  
           
     });
-
- 	</script>
+	</script>
     <?php include('template/footer.php'); ?>
