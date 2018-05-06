@@ -141,11 +141,55 @@
 				header("location: /");
 			}
 
+			$data4 = Services::getXLS('exceleservices/individzan.xlsx');
+
+				
+				$data_res4 =Services::convert_arr($data4, 'id', 0);
+				$data_res4 =Services::convert_arr($data4, 'name', 1, $data_res4);
+				$data_res4 =Services::convert_arr($data4, 'zam', 2, $data_res4);
+				$data_res4 =Services::convert_arr($data4, 'priceone', 3, $data_res4);
+				$data_res4 =Services::convert_arr($data4, 'priceonev', 4, $data_res4);
+				$data_res4 =Services::convert_arr($data4, 'priceabo', 5, $data_res4);
+				$data_res4 =Services::convert_arr($data4, 'priceabov', 6, $data_res4);
 
 			require_once(ROOT. '/view/admin/services/view.php');
 
 			return true;
 		}
+
+		function ActionServicesAdd()
+		{
+			$userId = User::checkLogged();
+
+			$user = User::getUser($userId);
+
+			if(User::IsNotAdmin()){
+				header("location: /");
+			}
+
+
+			require_once(ROOT. '/view/admin/services/view.php');
+
+			return true;
+		}
+
+		function ActionServicesEdit()
+		{
+			$userId = User::checkLogged();
+
+			$user = User::getUser($userId);
+
+			if(User::IsNotAdmin()){
+				header("location: /");
+			}
+
+
+			require_once(ROOT. '/view/admin/services/view.php');
+
+			return true;
+		}
+
+
 		function ActionAkcyi()
 		{
 			$userId = User::checkLogged();

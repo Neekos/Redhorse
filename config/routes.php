@@ -20,6 +20,7 @@ return [
 	'admin/news' => 'admin/news',
 	'admin/galereya/add' => 'admin/galereyaadd',
 	'admin/galereya' => 'admin/galereya',
+	'admin/services/add' => 'admin/servicesadd',
 	'admin/services' => 'admin/services',
 	'admin/akcyi' => 'admin/akcyi',
 	'admin/otziv' => 'admin/otziv',
