@@ -69,7 +69,7 @@
 				$data_res4 =Services::convert_arr($data4, 'priceonev', 4, $data_res4);
 				$data_res4 =Services::convert_arr($data4, 'priceabo', 5, $data_res4);
 				$data_res4 =Services::convert_arr($data4, 'priceabov', 6, $data_res4);
-				 var_dump($data_res4);
+				// // var_dump($data_res4);
 
 				
 			
