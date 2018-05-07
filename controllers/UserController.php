@@ -72,7 +72,7 @@ class UserController
 			$errors = false;
 
 			if(!User::checkLoginExists($email)){
-				$errors[] = 'Логин не должно быть короче 2 символов';
+				$errors[] = 'email не должно быть короче 2 символов';
 			}
 			if(!User::checkPassword($password)) 
 			{
