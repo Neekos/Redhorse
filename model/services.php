@@ -98,7 +98,20 @@ include('/components/PHPExcel/PHPExcel/WorksheetIterator.php');
 
 			$servicesList = [];
 
-			$sql = 'SELECT * FROM services';
+			$sql = 'SELECT 
+						products.id as Nomer ,
+						number_of_lessons.number as number,
+						products.zam as frost ,
+						products.price_weekdays as price_weekdays , 
+						products.price_weekend as price_weekend , 
+						services.id as id ,
+						services.title as Name ,
+						services.discription as Description  
+						 
+						
+					FROM services
+						LEFT JOIN products ON services.id = products.id_services
+						LEFT JOIN number_of_lessons ON number_of_lessons.id = products.id_number';
 
 			$result = $db->query($sql);
 
@@ -106,13 +119,52 @@ include('/components/PHPExcel/PHPExcel/WorksheetIterator.php');
 
 			while ($row = $result->fetch()) {
 				$servicesList[$i]['id'] = $row['id'];
-				$servicesList[$i]['title']= $row['title'];
-				$servicesList[$i]['discription']= $row['discription'];
+				$servicesList[$i]['number'] = $row['number'];
+				$servicesList[$i]['frost'] = $row['frost'];
+				$servicesList[$i]['Nomer'] = $row['Nomer'];
+				$servicesList[$i]['Name']= $row['Name'];
+				$servicesList[$i]['Description']= $row['Description'];
+				$servicesList[$i]['price_weekend']= $row['price_weekend'];
+				$servicesList[$i]['price_weekdays']= $row['price_weekdays'];
 				$i++;
 			}
 			return $servicesList;
 		}
 
+
+		public static function gettable($idtable){
+			$db = Db::getConnection();
+			$twolist = [];
+
+
+			$result = $db->query('SELECT 
+						products.id as Nomer2 ,
+						number_of_lessons.number as number2,
+						products.zam as frost2 ,
+						products.price_weekdays as price_weekdays2 , 
+						products.price_weekend as price_weekend2    
+						 
+						
+					FROM products
+						LEFT JOIN services ON services.id = products.id_services
+						LEFT JOIN number_of_lessons ON number_of_lessons.id = products.id_number
+					WHERE products.id_services = '. $idtable);
+
+			$i = 0;
+
+			while ($row = $result->fetch()) {
+				
+				$twolist[$i]['number2'] = $row['number2'];
+				$twolist[$i]['frost2'] = $row['frost2'];
+				$twolist[$i]['Nomer2'] = $row['Nomer2'];
+				
+				
+				$twolist[$i]['price_weekend2']= $row['price_weekend2'];
+				$twolist[$i]['price_weekdays2']= $row['price_weekdays2'];
+				$i++;
+			}
+			return $twolist;
+		}
 
 		public static function getoneServices($id){
 
@@ -124,17 +176,19 @@ include('/components/PHPExcel/PHPExcel/WorksheetIterator.php');
 
 				$result = $db->query('
 					SELECT 
-						product.id as Nomer ,
-						product.price as Price , 
+						products.id as Nomer ,
+						number_of_lessons.number as number,
+						products.zam as frost ,
+						products.price_weekdays as price_weekdays , 
+						products.price_weekend as price_weekend , 
 						services.id as id ,
 						services.title as Name ,
-						services.discription as Desctiption , 
-						time_of_lessons.time as Time , 
-						day_of_the_week.day as Days  
-					FROM product
-						RIGHT JOIN services ON services.id = product.id_services 
-						RIGHT JOIN time_of_lessons ON time_of_lessons.id = product.id_time 
-						RIGHT JOIN day_of_the_week ON day_of_the_week.id = product.id_day
+						services.discription as Description  
+						 
+						
+					FROM products
+						RIGHT JOIN services ON services.id = products.id_services
+						RIGHT JOIN number_of_lessons ON number_of_lessons.id = products.id_number
 					WHERE services.id = 
 
 						' . $id );
@@ -142,12 +196,13 @@ include('/components/PHPExcel/PHPExcel/WorksheetIterator.php');
 
 				while ($row = $result->fetch()) {
 				$products[$i]['id'] = $row['id'];
-				$products[$i]['id'] = $row['Nomer'];
+				$products[$i]['number'] = $row['number'];
+				$products[$i]['frost'] = $row['frost'];
+				$products[$i]['Nomer'] = $row['Nomer'];
 				$products[$i]['Name']= $row['Name'];
-				$products[$i]['Desctiption']= $row['Desctiption'];
-				$products[$i]['Time']= $row['Time'];
-				$products[$i]['Days']= $row['Days'];
-				$products[$i]['Price']= $row['Price'];
+				$products[$i]['Description']= $row['Description'];
+				$products[$i]['price_weekend']= $row['price_weekend'];
+				$products[$i]['price_weekdays']= $row['price_weekdays'];
 				$i++;
 			}
 			return $products;

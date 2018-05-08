@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 08 2018 г., 06:14
+-- Время создания: Май 08 2018 г., 13:12
 -- Версия сервера: 5.6.37
 -- Версия PHP: 5.6.31
 
@@ -215,8 +215,12 @@ CREATE TABLE `number_of_lessons` (
 --
 
 INSERT INTO `number_of_lessons` (`id`, `number`) VALUES
-(7, '1 занятие'),
-(8, '8 занятий 2 раза в неделю');
+(1, '1 занятие'),
+(2, 'Абонемент 4 занятия (месяц)'),
+(3, 'Абонемент 8 занятий 2 раза в неделю'),
+(4, 'Абонемент 12 занятий (месяц)'),
+(5, 'Абонемент 16 занятий (месяц)'),
+(6, 'Абонемент Без лимитный 30 занятий (месяц)');
 
 -- --------------------------------------------------------
 
@@ -252,32 +256,33 @@ CREATE TABLE `order_list` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `product`
+-- Структура таблицы `products`
 --
 
-CREATE TABLE `product` (
+CREATE TABLE `products` (
   `id` int(11) NOT NULL,
   `id_services` int(11) NOT NULL,
-  `id_number` int(11) DEFAULT NULL,
-  `id_day` int(11) DEFAULT NULL,
-  `id_time` int(11) DEFAULT NULL,
-  `id_type` int(11) DEFAULT NULL,
-  `price` varchar(255) NOT NULL
+  `zam` varchar(255) NOT NULL,
+  `id_number` int(11) NOT NULL,
+  `price_weekdays` varchar(255) NOT NULL,
+  `price_weekend` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `product`
+-- Дамп данных таблицы `products`
 --
 
-INSERT INTO `product` (`id`, `id_services`, `id_number`, `id_day`, `id_time`, `id_type`, `price`) VALUES
-(1, 1, NULL, 7, 1, NULL, 'Будни: 250 руб'),
-(2, 1, NULL, 7, 2, NULL, 'Будни: 500 руб'),
-(3, 1, NULL, 8, 1, NULL, 'Выходные: 300 руб'),
-(4, 1, NULL, 8, 2, NULL, 'Выходные: 600 руб'),
-(5, 2, NULL, 7, 2, NULL, 'Будни: 500 Руб'),
-(6, 2, NULL, 8, 2, NULL, 'Выходные: 600 Руб'),
-(7, 2, NULL, 7, 4, NULL, 'Будни: 900 Руб'),
-(8, 2, NULL, 8, 4, NULL, 'Выходные: 1000 Руб');
+INSERT INTO `products` (`id`, `id_services`, `zam`, `id_number`, `price_weekdays`, `price_weekend`) VALUES
+(1, 1, '', 1, '600', '700'),
+(2, 1, '', 3, '2900', '3100'),
+(3, 1, '15 дней', 4, '6000', ''),
+(4, 1, '15 дней', 5, '10000', ''),
+(12, 2, '', 1, '650', '700'),
+(13, 2, '', 2, '2400', '2600'),
+(14, 2, '', 3, '3800', '4200'),
+(15, 2, '15 дней', 6, '5100', ''),
+(16, 2, '15 дней', 5, '6400', ''),
+(17, 2, '15 дней', 6, '10500', '');
 
 -- --------------------------------------------------------
 
@@ -336,17 +341,8 @@ CREATE TABLE `services` (
 --
 
 INSERT INTO `services` (`id`, `title`, `discription`, `parent_id`) VALUES
-(1, 'Катание на лошади и пони', 'самая замечательная возможность отдохнуть физически и психологически, организовать свой досуг, насладиться природой и общением с лошадьми.', 1),
-(2, 'Верховые прогулки', 'вы самостоятельно управляете животным в присутствии и под контролем инструктора.', 1),
-(5, 'Индивидуальное занятие с тренером', 'Продолжительность 1 занятия – 45 минут\r\n\r\n· « Заморозка» - Срок действия абонемента увеличивается на срок действия «заморозки».\r\n\r\n· Обязательно во время занятий на всаднике должен быть одет защитный шлем. «Защитное снаряжение» - шлем(входит в стоимость занятия), краги, защитный жилет (по необходимости) выдаётся на прокат в Клубе за отдельную плату. Стоимость проката 1 единицы снаряжения - 50 рублей/час. Рекомендуется купить индивидуальный комплект защитного снаряжения самим.', 1),
-(6, 'Групповые занятия с тренером для взрослых с 18 лет', 'На групповые занятия можно записаться после прохождения 2-4-х индивидуальных занятий или тем, у кого есть навыки верховой езды.\r\n\r\n· Групповые занятия проходят по расписанию.\r\n\r\n· В группе от 3-х до 6 всадников.\r\n\r\n· Продолжительность 1 занятия – 60 минут.\r\n\r\n· Обязательно во время занятий на всаднике должен быть одет защитный шлем. «Защитное снаряжение» - шлем(входит в стоимость занятия), краги, защитный жилет (по необходимости) выдаётся на прокат в Клубе за отдельную плату. Стоимость проката 1 единицы снаряжения - 50 рублей/час. Рекомендуется купить индивидуальный комплект защитного снаряжения.\r\n\r\n· «Заморозка» - Срок абонемента увеличивается на срок действия «заморозки».', 1),
-(9, 'Секция по конному спорту от 10 до 18 лет', 'Пересчет оплаты за секцию верховой езды с учетом занятий, пропущенных по уважительной причине (необходимо предоставить справку от врача, или предупредить за 1 день), производится в следующем месяце.\r\n\r\nПродолжительность одного занятия -60 минут.\r\n\r\nПЕРВЫЕ занятия для новичков проводятся в прокате по прейскуранту.', 1),
-(10, 'Пони школа с 5 до 10 лет', 'Продолжительность 1 занятия – 30 - 45 минут без учета седловки', 1),
-(11, 'Оздоровительная верховая езда (Иппотерапия, Инвоспорт)', 'Оздоровительная езда', 2),
-(12, 'Аренда лошади для фотосессии', 'Аренда', 2),
-(13, 'Услуги фотографа', 'Фотосессии', 2),
-(14, 'Постой лошади', 'постой', 2),
-(15, 'Услуги по уходу и тренингу лошади', 'Тренер-берейтор проводит тренинговую работу по плану обучения лошади технике верховой езды на различных аллюрах.\r\n\r\nЕжедневно 60 мин в день.', 2);
+(1, 'Индивидуальные занятия с тренером для детей и взрослых', 'Продолжительность 1 занятия – 45 минут, с учетом седловки\r\nПрограмма индивидуальных занятий подбирается конкретно под каждого всадника. Это может быть: занятие по выездке, конкуру, поездки в лес, теоретические занятия + практика в конюшне, езда без седла, подготовка к различным соревнованиям.', 1),
+(2, 'Развивающие занятия для детей от 2-х лет по программе «Я люблю свою лошадку». Пони-клуб (для детей с 5 до 8 лет)', 'Продолжительность 1 занятия – от 30 до 45 мину\r\n', 1);
 
 -- --------------------------------------------------------
 
@@ -476,15 +472,12 @@ ALTER TABLE `order_list`
   ADD KEY `id_serves` (`id_ product`);
 
 --
--- Индексы таблицы `product`
+-- Индексы таблицы `products`
 --
-ALTER TABLE `product`
+ALTER TABLE `products`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_services` (`id_services`,`id_number`,`id_day`,`id_time`,`id_type`),
-  ADD KEY `id_number` (`id_number`),
-  ADD KEY `id_day` (`id_day`),
-  ADD KEY `id_time` (`id_time`),
-  ADD KEY `id_type` (`id_type`);
+  ADD KEY `id_services` (`id_services`),
+  ADD KEY `id_number` (`id_number`);
 
 --
 -- Индексы таблицы `review`
@@ -561,7 +554,7 @@ ALTER TABLE `image`
 -- AUTO_INCREMENT для таблицы `number_of_lessons`
 --
 ALTER TABLE `number_of_lessons`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT для таблицы `orders`
 --
@@ -573,10 +566,10 @@ ALTER TABLE `orders`
 ALTER TABLE `order_list`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT для таблицы `product`
+-- AUTO_INCREMENT для таблицы `products`
 --
-ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+ALTER TABLE `products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT для таблицы `review`
 --
@@ -620,14 +613,17 @@ ALTER TABLE `order_list`
   ADD CONSTRAINT `order_list_ibfk_2` FOREIGN KEY (`id_ product`) REFERENCES `product` (`id`) ON UPDATE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `product`
+-- Ограничения внешнего ключа таблицы `products`
 --
-ALTER TABLE `product`
-  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`id_services`) REFERENCES `services` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `product_ibfk_2` FOREIGN KEY (`id_number`) REFERENCES `number_of_lessons` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `product_ibfk_3` FOREIGN KEY (`id_day`) REFERENCES `day_of_the_week` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `product_ibfk_4` FOREIGN KEY (`id_time`) REFERENCES `time_of_lessons` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `product_ibfk_5` FOREIGN KEY (`id_type`) REFERENCES `type` (`id`) ON UPDATE CASCADE;
+ALTER TABLE `products`
+  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`id_services`) REFERENCES `services` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `products_ibfk_2` FOREIGN KEY (`id_number`) REFERENCES `number_of_lessons` (`id`) ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `services`
+--
+ALTER TABLE `services`
+  ADD CONSTRAINT `services_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `category` (`id`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -11,11 +11,11 @@
 		
 			$list = [];
 			$list = Category::getCategoryList();
-
-
-
+			
+			$oneprod = Services::getoneServices($_SESSION['ID']);
 			$categoryProduct = Category::getCategoryProduct($categoryId , $page);
-
+			$_SESSION['ID'] = $categoryProduct;
+			var_dump($_SESSION);
 
 			$TotalProduct = Category::getTotalProductCategory($categoryId);
 
@@ -37,7 +37,11 @@
 			$serviceslist =[];
 
 			$serviceslist = Services::getallServices();
-
+			
+				
+			// $table = Services::gettable(1);
+			
+			
 
 
 			require_once(ROOT. '/view/services/services.php');
@@ -50,7 +54,6 @@
 
 			$product = Services::getoneServices($id);
 
-			var_dump($product);
 
 			require_once(ROOT. '/view/services/view.php');
 
