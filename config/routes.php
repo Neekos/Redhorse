@@ -1,6 +1,8 @@
 <?php
 
 return [
+	'order' => 'order/order',
+	'zapis' => 'order/zapis',
 	'review/show' => 'review/show',
 	'review' => 'review/index',
 	'user/registration' => 'user/registration',

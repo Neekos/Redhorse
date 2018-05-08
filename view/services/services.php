@@ -28,6 +28,7 @@
                             <th>Заморозка</th>  
                             <th>Будни</th>  
                             <th>Выходной</th>
+                            <th></th>
                             <th></th>  
                         <tr>
                        
@@ -39,6 +40,7 @@
                                 <td><?=$value1['price_weekend']; ?></td>  
                                  
                                 <td> <a href="/zapis/"><button class="btn btn-primary" >Записаться</button></a></td>
+                                <td> <a href="/order/"><button class="btn btn-primary" >заказ</button></a></td>
                             </tr> 
                        
                     </table> 
