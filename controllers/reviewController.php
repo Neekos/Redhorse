@@ -1,20 +1,44 @@
 <?php 
 
 Class reviewController {
-	public function actionIndex()
-	{
-		
 
+		public $data = 'Данные';
+	
+		public function actionIndex()
+		{
+			$messages = [];
+			$messages = review::getreview();
+			$this->data = $messages;
+			if (!empty($_POST)) {
+					$data = [];
 
-		//$message = [];
-		$message = review::getreview($id = false);
+					if (!empty($_POST['username'])) {
+						$data['username'] = $_POST['username'];
+					}
+					if (!empty($_POST['msg'])) {
+						$data['msg'] = $_POST['msg'];
+					}
+					if (isset($data['username']) && isset($data['msg'])) {
+						review::insertreview($data);
+					}
+				}
+				;
+				
+			require_once (ROOT.'/view/review/review.php');
+			return true;
+		}
 
-		//var_dump($message);
+		public function actionshow()
+		{
+			$messages = [];
+			$messages = review::getreview();
 
-		require_once (ROOT.'/view/review/review.php');
-		return true;
+			require_once (ROOT.'/view/review/show.php');
+			return true;
+			
+		}
+
 	}
-}
 
 
 ?>

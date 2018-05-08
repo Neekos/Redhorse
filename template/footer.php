@@ -31,13 +31,17 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/template/js/bootstrap.min.js"></script>
 
-    <script src="/js/jquery-1.9.0.min.js"></script>
+    <script src="/template/js/jquery-1.9.0.min.js"></script>
 
-	<script src="/js/jquery.accordion.js"></script>
+	<script src="/template/js/jquery.accordion.js"></script>
 
-	<script src="/js/jquery.cookie.js"></script>
+	<script src="/template/js/jquery.cookie.js"></script>
 
-    <script type="text/javascript">
+
+ 
+<script src="/template/js/lightbox-plus-jquery.min.js"></script>
+
+<script type="text/javascript">
     $(function() {
 		if ($.browser.msie && $.browser.version.substr(0,1)<7)
 		{

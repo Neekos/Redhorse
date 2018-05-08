@@ -19,7 +19,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="call3">
-                                <a href="#" class="call2">Записаться</a>
+                               
                             </div>
                             </div>
                         </div>
@@ -34,7 +34,7 @@
                       <div class="container">
                             <div class="row">
                                 <div class="call3">
-                                <a href="#" class="call2">Записаться</a>
+                                
                             </div>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                       <div class="container">
                             <div class="row">
                                 <div class="call3">
-                                <a href="#" class="call2">Записаться</a>
+                                
                             </div>
                             </div>
                         </div>
@@ -82,7 +82,7 @@
                 <div class="wrap-col item">
                   <h2 class="header"><a href="#">Добро пожаловать! мы рады вас видеть.</a></h2>
                   <p>Здесь предоставлена подробная информация нашего место положения, контакты и предоставляемые услуги.</p>
-                  <a href="#" class="button-1">Узнать больше</a>
+                  <a href="/contact/" class="button-1">Узнать больше</a>
                 </div>
               </div>
               <div class="col-1-2">
@@ -106,10 +106,10 @@
             <div class="row">
               <h2 class="header t-center">Галерея</h2>
               <div class="row">
-                {% for item in image %}
+                <?php foreach ($photo as $value): ?>
                   <div class="col-1-4">
                     <div class="wrap-col">
-                      <a class="example-image-link" href="/template/images/photo1.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward.">
+                      <a class="example-image-link" href="<?=$value['img'];?>" data-lightbox="example-set" data-title="Нажмите на край картинки что бы смотреть дальше.">
                         <div class="zoom-container">
                           <div class="zoom-caption">
                             <div class="caption-inner">
@@ -118,36 +118,35 @@
                               </div>
                             </div>
                           </div>
-                          <img class="example-image" src="/template/images/photo1.jpg" alt=""/>
+                          <img class="example-image" src="<?=$value['img'];?>" alt=""/>
                         </div>
                       </a>
                     </div>
                   </div>
-                {% endfor %}
+                <?php endforeach ?>
               </div>
             </div>
           </div>
         </section>
-        <hr>
         <section class="content-box box-1 box-style-1"><!--Start Box-->
           <div class="zerogrid">
             <div class="row">
               <h2 class="header t-center">Новости</h2>
-              {% for item in article %}
-              <div class="col-1-3">
-                <div class="wrap-col ">
-                  <div class="item">
-                    <div class="zoom-container">
-                      <img src="/template/images/test.jpg">
-                    </div>
-                    <div class="item-content">
-                      <h3 class="item-header"><a href="{{ path_for('article.getOne', {id: item.id } ) }}">{{ item.title }}</a></h3>
-                      <p>{{item.discription}}</p><hr> <p>{{item.date_time}}</p>
+              <?php foreach ($news as $art): ?>
+                <div class="col-1-3">
+                  <div class="wrap-col ">
+                    <div class="item">
+                      <div class="zoom-container">
+                        <img src="<?=$art['img'] ?>">
+                      </div>
+                      <div class="item-content">
+                        <h3 class="item-header"><a href="#"><?=$art['title'] ?></a></h3>
+                        <p><?=$art['discription'] ?></p><hr> <p><?=$art['date_time'] ?></p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              {% endfor %}
+              <?php endforeach ?>
             </div>
           </div>
         </section>

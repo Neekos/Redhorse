@@ -1,6 +1,7 @@
 <?php
 
 return [
+	'review/show' => 'review/show',
 	'review' => 'review/index',
 	'user/registration' => 'user/registration',
 	'user' => 'user/login',
@@ -14,8 +15,12 @@ return [
 	'services/excele'=> 'services/excele',
 	'services' => 'services/services',
 
+
+	'admin/news/add' => 'admin/newsadd',
 	'admin/news' => 'admin/news',
+	'admin/galereya/add' => 'admin/galereyaadd',
 	'admin/galereya' => 'admin/galereya',
+	'admin/services/add' => 'admin/servicesadd',
 	'admin/services' => 'admin/services',
 	'admin/akcyi' => 'admin/akcyi',
 	'admin/otziv' => 'admin/otziv',

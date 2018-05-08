@@ -1,88 +1,76 @@
-<?php 
-	require_once ('template/header.php');
+<?php include('template/header.php'); ?>
+<h1>Гостевая книга</h1>
 
 	
- ?>
- <div id="messages">
- 	<?php foreach ($message as $value): ?>
- 		<h1>Гость:<?=$value['username'] ?></h1>
- 		<h1>Написал:<?=$value['msg'] ?></h1>
- 		<p>Когда:<?=$value['dat'] ?></p>
- 	<?php endforeach ?>
+	<div id="mes">
 
- </div>
- 	
- 	<form id="myForm">
- 		<input id="username">
- 		<input id="msg">
- 		<input type="submit">
- 	</form>
- 	<script type="text/javascript">
+		
+	
+	</div>
+	
+<br>
+<h3>Добавить сообщение</h3>
+<!-- форма отправки сообщения -->
 
-function splash()
-    {
-        if (document.myForm.username.value  =='')
-            {
-                alert ("Заполните имя пользователя!");
-                return false;   
-            }
-            
-        if (document.myForm.msg.value  =='')
-            {
-                alert ("Заполните текст сообщения!");
-                return false;   
-            }
-        
-        return true;   
-    }
-    
- 		function Show_messages(){
+<!-- проверка заполнения формы -->
+<script type="text/javascript">
+	
+
+</script>
+
+<!-- код формы -->
+
+		<div class="panel-body">
+			<form  id="myform" autocomplete="off">
+			<div class="form-group">
+					<label for="username">Имя</label>
+					<input type="text" name="username" id="username" class="form-control" value="">
+						<span class="help-block"></span>
+				</div>
+					<label for="msg">Сообщение</label>
+					<textarea rows="10" cols="37" name="msg" id="msg" class="form-control" placeholder="Сообщение"></textarea>
+						<span class="help-block"></span>
+				</div>
+				<div class="form-group">
+					<button type="submit" name="register" class="btn btn-primary">Отправить</button>
+				</div>
+			</form>
+		</div>
+
+<script type="text/javascript">
+	function Show_messages(){
 
 		$.ajax({
-			url: "view/review/review.php";
+			url: "/view/review/show.php",
 			cache:false,
 			success: function(html){
-				$("#messages").html(html);
+				$("#mes").html(html);
 			}
 		});
-	} $(document).ready(function(){  
-  
-        show_messages();  
+
+		} 
+</script>
+
+<script type="text/javascript">
+		
+		$(document).ready(function(){  
+    
+        Show_messages();  
           
         // контроль и отправка данных на сервер в фоновом режиме  
         // при нажатии на кнопку "отправить сообщение"  
-        $("#myForm").submit(function(){  
-          
-            var name = $("#username").val();  
-            var msg  = $("#msg").val();  
-            if (name =='')  
-            {  
-                alert ("Заполните имя пользователя!");  
-                return false;  
-            }  
-            if (msg =='')  
-            {  
-                alert ("Заполните текст сообщения!");  
-                return false;  
-            }  
-  
-            $.ajax({  
-                type: "POST",  
-                url: "action.php",  
-                data: "username="+name+"&msg="+msg+"&action=add",  
-                success: function(msg){  
-                    show_messages();  
-               }  
-            });  
+        $("#myform").submit(function(e){  
+       		e.preventDefault();
+             $.ajax({  
+                 type: "POST",  
+                 url: "review.php",  
+                 data:$(this).serialize()}).done(function(){
+                 	Show_messages();
+                 }) ; 
               
-            return false;  
+             return false;  
         });  
           
     });
-
- 	</script>
- <?php 
-	require_once ('template/footer.php');
-
-	
- ?>
+	</script>
+    <?php include('template/footer.php'); ?>

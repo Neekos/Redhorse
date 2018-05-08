@@ -3,8 +3,11 @@
 function __autoload($class_name)
 {
 	$array_paths=array(
+			'/template/view/review/',
 			'/template/PChart/Pchart/',
+			'/config/',
 			'/model/',
+			'/controllers/',
 			'/components/',
 
 		);
