@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 04 2018 г., 14:40
--- Версия сервера: 5.6.37-log
+-- Время создания: Май 08 2018 г., 06:14
+-- Версия сервера: 5.6.37
 -- Версия PHP: 5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -33,7 +33,7 @@ CREATE TABLE `article` (
   `title` varchar(255) NOT NULL,
   `discription` varchar(255) NOT NULL,
   `text` varchar(255) NOT NULL,
-  `images` varchar(255) DEFAULT NULL,
+  `img` varchar(255) DEFAULT NULL,
   `date_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -41,7 +41,7 @@ CREATE TABLE `article` (
 -- Дамп данных таблицы `article`
 --
 
-INSERT INTO `article` (`id`, `title`, `discription`, `text`, `images`, `date_time`) VALUES
+INSERT INTO `article` (`id`, `title`, `discription`, `text`, `img`, `date_time`) VALUES
 (1, 'Изучаем Slim', 'Изучение правил и ....', 'Тут текст', '', '2018-04-10 09:30:06'),
 (2, 'Новая статья', 'Тут может быть что угодно ', 'тут текст', '', '2018-04-17 10:00:13'),
 (3, 'Хорошая новость', 'Описание новости', 'длыовадлфоываждлофывжалдофывдлаофдылвоа', 'images/photo', '2018-04-16 13:12:10'),
@@ -136,6 +136,27 @@ CREATE TABLE `category` (
 INSERT INTO `category` (`id`, `name`, `sort_order`, `status`) VALUES
 (1, 'первая категоря', 0, 0),
 (2, 'Вторая категория', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `contact`
+--
+
+CREATE TABLE `contact` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `telephon` varchar(255) NOT NULL,
+  `message` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `contact`
+--
+
+INSERT INTO `contact` (`id`, `name`, `email`, `telephon`, `message`) VALUES
+(0, 'Андрей', 'Nk@mail.ru', '89345040564', 'Оставил сообщение!');
 
 -- --------------------------------------------------------
 
