@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 08 2018 г., 13:12
+-- Время создания: Май 09 2018 г., 20:20
 -- Версия сервера: 5.6.37
 -- Версия PHP: 5.6.31
 
@@ -156,7 +156,8 @@ CREATE TABLE `contact` (
 --
 
 INSERT INTO `contact` (`id`, `name`, `email`, `telephon`, `message`) VALUES
-(0, 'Андрей', 'Nk@mail.ru', '89345040564', 'Оставил сообщение!');
+(0, 'Андрей', 'Nk@mail.ru', '89345040564', 'Оставил сообщение!'),
+(0, 'sdf', 'sdfsdf@mail.ru', 'sdfs', 'sdfdsf');
 
 -- --------------------------------------------------------
 
@@ -231,15 +232,14 @@ INSERT INTO `number_of_lessons` (`id`, `number`) VALUES
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `date_of_order` datetime NOT NULL
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `product` varchar(255) NOT NULL,
+  `price` float NOT NULL,
+  `status` enum('0','1') NOT NULL DEFAULT '0',
+  `telephon` varchar(255) NOT NULL,
+  `date_of_order` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `orders`
---
-
-INSERT INTO `orders` (`id`, `id_user`, `date_of_order`) VALUES
-(1, 1, '2018-04-17 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -302,7 +302,11 @@ CREATE TABLE `review` (
 --
 
 INSERT INTO `review` (`id`, `username`, `dat`, `msg`) VALUES
-(1, 'Паша', '2018-05-01 18:22:44', 'Что все сложно!');
+(1, 'Паша', '2018-05-01 18:22:44', 'Что все сложно!'),
+(2, 'asdfa', '2018-05-10 00:19:06', 'asdf'),
+(3, 'asdfa', '2018-05-10 00:19:06', 'asdf'),
+(4, 'asdfa', '2018-05-10 00:19:09', 'asdf'),
+(5, 'asdfa', '2018-05-10 00:19:09', 'asdf');
 
 -- --------------------------------------------------------
 
@@ -399,7 +403,7 @@ CREATE TABLE `user` (
   `telephon` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `date_join` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `role` int(11) NOT NULL
+  `role` enum('0','1') NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -407,8 +411,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `surname`, `middlename`, `email`, `telephon`, `password`, `date_join`, `role`) VALUES
-(1, 'user', 'user', 'user', 'user@mail.ru', '900000000', 'ee11cbb19052e40b07aac0ca060c23ee', '2018-04-27 15:52:41', 0),
-(2, 'admin', 'admin', 'admin', 'admin@mail.ru', '90000000', '21232f297a57a5a743894a0e4a801fc3', '2018-04-27 15:53:12', 1);
+(1, 'user', 'user', 'user', 'user@mail.ru', '900000000', 'ee11cbb19052e40b07aac0ca060c23ee', '2018-04-27 15:52:41', '0'),
+(2, 'admin', 'admin', 'admin', 'admin@mail.ru', '90000000', '21232f297a57a5a743894a0e4a801fc3', '2018-04-27 15:53:12', '1');
 
 --
 -- Индексы сохранённых таблиц
@@ -559,7 +563,7 @@ ALTER TABLE `number_of_lessons`
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT для таблицы `order_list`
 --
@@ -574,7 +578,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT для таблицы `review`
 --
 ALTER TABLE `review`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT для таблицы `role`
 --
@@ -606,24 +610,11 @@ ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON UPDATE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `order_list`
---
-ALTER TABLE `order_list`
-  ADD CONSTRAINT `order_list_ibfk_1` FOREIGN KEY (`id_order`) REFERENCES `orders` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `order_list_ibfk_2` FOREIGN KEY (`id_ product`) REFERENCES `product` (`id`) ON UPDATE CASCADE;
-
---
 -- Ограничения внешнего ключа таблицы `products`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`id_services`) REFERENCES `services` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `products_ibfk_2` FOREIGN KEY (`id_number`) REFERENCES `number_of_lessons` (`id`) ON UPDATE CASCADE;
-
---
--- Ограничения внешнего ключа таблицы `services`
---
-ALTER TABLE `services`
-  ADD CONSTRAINT `services_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `category` (`id`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
