@@ -41,8 +41,6 @@
 				
 			// $table = Services::gettable(1);
 			
-			
-
 
 			require_once(ROOT. '/view/services/services.php');
 

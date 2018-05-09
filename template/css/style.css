@@ -370,6 +370,7 @@ a.button-2:hover{background-color: rgba(0, 0, 0, 0.9);}
 }
 
 .active{
-  font-size: 20px;
-  background: yellow;
+  /*border-top: 1px solid #ff530d;*/
+  font-size: 35px;
+  background: #ffffff;
 }

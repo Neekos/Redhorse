@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="/template/css/menu.css">
     <link rel="stylesheet" href="/template/css/lightbox.css">
     <link href="/template/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <script src="/template/js/jquery1111.min.js" type="text/javascript"></script>
+   
+    <script type="text/javascript" src="/template/js/activ.js" ></script>
     <script src="/template/js/script.js"></script>
 
     <!--[if lt IE 8]>
@@ -35,15 +35,15 @@
 <header >
   <div class="zerogrid">
     <div class="wrap-header">
-      <div class="logo t-center"><a href="index.html"><img src="/template/images/logo1.png"/></a></div>  
+      <div class="logo t-center"><a href="/"><img src="/template/images/logo1.png"/></a></div>  
       <div id='cssmenu' class="align-center">
-        <ul>
-           <li class="active"><a href='/'><span>Главная</span></a></li>
+        <ul class="menu">
+           <li class=""><a href='/'><span>Главная</span></a></li>
            <li><a href='{{ path_for('news') }}'><span>Новости</span></a></li>
            <li class='last'><a href='/services/'><span>услуги</span></a>
            </li>
-           <li><a href='{{ path_for('galereya') }}'><span>Галерея</span></a></li>
-           <li><a href='{{ path_for('akcyi') }}'><span>Акции</span></a></li>
+           <li><a href='/galereya/'><span>Галерея</span></a></li>
+           <li><a href='/akci/'><span>Акции</span></a></li>
            <li><a href='/review/'><span>Отзывы</span></a></li>
            <li class='last'><a href='/contact/'><span>Контакты</span></a></li>
            <?php if (User::isGuest()): ?>

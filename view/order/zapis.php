@@ -1,5 +1,6 @@
 <?php include('/template/header.php'); ?>
 
+
 <div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
@@ -32,7 +33,7 @@
 				</div>
 				<div class="form-group">
 					<label for="services">Услуга</label>
-					<input type="datetime" name="services" id="services" class="form-control" value="">
+					<input type="text" name="services" id="services" class="form-control" readonly>
 						<span class="help-block"></span>
 				</div>
 				<div class="form-group">
