@@ -52,6 +52,21 @@ include('/components/PHPExcel/PHPExcel/WorksheetIterator.php');
 	class Services
 	{
 
+		public static function getorder($data){
+			$db = Db::getConnection();
+
+			$sql = 'INSERT INTO orders (name, email,   telephon) VALUES (:name, :email,  :telephon )';
+
+			$result = $db->prepare($sql);
+			$result->bindParam(':name', $data['name'], PDO::PARAM_STR);
+			$result->bindParam(':email', $data['email'], PDO::PARAM_STR);
+			
+			$result->bindParam(':telephon', $data['telephon'], PDO::PARAM_STR);
+
+			$result->execute();
+
+		}
+
 		public static function getXLS($xls){
 		  $pExcel = PHPExcel_IOFactory::load($xls);
 		  foreach ($pExcel->getWorksheetIterator() as $worksheet) {
@@ -111,7 +126,8 @@ include('/components/PHPExcel/PHPExcel/WorksheetIterator.php');
 						
 					FROM services
 						LEFT JOIN products ON services.id = products.id_services
-						LEFT JOIN number_of_lessons ON number_of_lessons.id = products.id_number';
+						LEFT JOIN number_of_lessons ON number_of_lessons.id = products.id_number
+					WHERE services.id = products.id_services';
 
 			$result = $db->query($sql);
 

@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="/template/css/menu.css">
     <link rel="stylesheet" href="/template/css/lightbox.css">
     <link href="/template/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-   
     <script type="text/javascript" src="/template/js/activ.js" ></script>
     <script src="/template/js/script.js"></script>
 

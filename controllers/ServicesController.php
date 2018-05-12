@@ -12,10 +12,9 @@
 			$list = [];
 			$list = Category::getCategoryList();
 			
-			$oneprod = Services::getoneServices($_SESSION['ID']);
+			$oneprod = Services::getoneServices();
 			$categoryProduct = Category::getCategoryProduct($categoryId , $page);
-			$_SESSION['ID'] = $categoryProduct;
-			var_dump($_SESSION);
+			
 
 			$TotalProduct = Category::getTotalProductCategory($categoryId);
 
@@ -40,7 +39,29 @@
 			
 				
 			// $table = Services::gettable(1);
-			
+
+
+			if (!empty($_POST)) {
+				$data = [];
+
+				if (!empty($_POST['name'])) {
+					$data['name'] = $_POST['name'];
+				}
+				if (!empty($_POST['email'])) {
+					$data['email'] = $_POST['email'];
+				}
+				if (!empty($_POST['telephon'])) {
+					$data['telephon'] = $_POST['telephon'];
+				}
+				
+				
+				
+
+				if (isset($data['name']) && isset($data['email']) && isset($data['telephon'])) {
+					Services::getorder($data);
+					location('/');
+				}
+			}
 
 			require_once(ROOT. '/view/services/services.php');
 

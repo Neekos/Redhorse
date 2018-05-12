@@ -29,7 +29,7 @@
                             <th>Будни</th>  
                             <th>Выходной</th>
                             <th></th>
-                            <th></th>  
+                            
                         <tr>
                        
                             <tr> 
@@ -39,8 +39,8 @@
                                 <td ><?=$value1['price_weekdays']; ?></td> 
                                 <td ><?=$value1['price_weekend']; ?></td>  
                                  
-                                <td><button class="btn btn-primary mod" data-product="<?=$value1['Name'];?>" data-val1="<?=$value1['Nomer'];?>" data-val2="<?=$value1['number'];?>" data-val3="<?=$value1['frost'];?>" data-val5="<?=$value1['price_weekend'];?>" data-val4="<?=$value1['price_weekdays'];?>">Записаться</button></td>
-                                <td> <a href="/order/"><button class="btn btn-primary order" >заказ</button></a></td>
+                                <td><button class="btn btn-primary mod" data-product="<?=$value1['Name'];?>" data-val1="<?=$value1['Nomer'];?>" data-val2="<?=$value1['number'];?>" data-val3="<?=$value1['frost'];?>" data-val5="<?=$value1['price_weekend'];?>" data-val4="<?=$value1['price_weekdays'];?>" data-noname="Неизвестный">Приобрести</button></td>
+                                
                             </tr> 
                        
                     </table> 
@@ -67,17 +67,12 @@
         <center><h3><textarea type="text" name="product" id="product" style="width: 100% ; text-align: center;" readonly rows="4" cols="25"></textarea></h3></center>
       </div>
       <div class="modal-body">
-      <form id="buy" method="post">
+      <form id="buy">
            <div class="form-group">
                     <label for="name">Имя</label>
                     <input type="text" name="name" id="name" class="form-control" value="">
                         <span class="help-block"></span>
                     
-                </div>
-                <div class="form-group">
-                    <label for="middlename">Отчество</label>
-                    <input type="text" name="middlename" id="middlename" class="form-control" value="">
-                        <span class="help-block"></span>
                 </div>
                 <div class="form-group">
                     <label for="email">email</label>
@@ -93,19 +88,17 @@
                 <input type="text" name="val2" id="val2" class="form-control" readonly></input>
                 <p>Заморозка: <input type="text" name="val3" id="val3" readonly></input></p>
                 
-                    <p id="p"><input type="radio" name="product" id="radio1" readonly checked> Будни: <input type="text" name="val4" id="val4" readonly></input></p>
+                    <p id="p"><input type="radio" name="weekday" id="radio1" readonly checked> Будни: <input type="text" name="val4" id="val4" readonly></input></p>
                     <div id="bk">
-                    <p><input type="radio" name="product" id="radio2" readonly> Выходные: <input type="text" name="val5" id="val5" readonly> </input></p>    
+                    <p><input type="radio" name="weekend" id="radio2" readonly> Выходные: <input type="text" name="val5" id="val5" readonly> </input></p>    
                     </div>
                     
                         <span class="help-block"></span>
                 </div>
-                
-        <input type="text" name="product" id="product"></input>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-        <button type="submit" class="btn btn-primary" >Отправить</button>
+        <button type="submit" class="btn btn-primary" name="submit" >Отправить</button>
 
       </form>
      
@@ -113,7 +106,29 @@
     </div>
   </div>
 </div>
-	 	
+	 <script type="text/javascript">
+      $(document).ready(function(){  
+        
+        //Show_messages();  
+          
+        // контроль и отправка данных на сервер в фоновом режиме  
+        // при нажатии на кнопку "отправить сообщение"  
+        $("#buy").submit(function(e){  
+            e.preventDefault();
+             $.ajax({  
+                 type: "POST",  
+                 url: "services.php",  
+                 data:$(this).serialize()}).done(function(){
+           
+                    alert("Спасибо за заявку! Скоро мы с вами свяжемся.");
+
+                 }) ; 
+              
+             return false;  
+        });  
+          
+    });   
+     </script>	
  <?php 
 
 	include('/template/footer.php');
