@@ -39,10 +39,28 @@
 			
 				
 			// $table = Services::gettable(1);
+			$name = false;
+			$email = false;
+			$telephon = false;
 
 
-			if (!empty($_POST)) {
-				$data = [];
+			if (User::isGuest()) {
+				
+
+			}else{
+
+				$userId = User::checkLogged();
+
+				$user = User::getUser($userId);
+
+				$name = $user['name'];
+				$email = $user['email'];
+				$telephon = $user['telephon'];
+			}
+			
+			$data = [];
+			if (isset($_POST['submit'])) {
+				
 
 				if (!empty($_POST['name'])) {
 					$data['name'] = $_POST['name'];
@@ -59,7 +77,7 @@
 
 				if (isset($data['name']) && isset($data['email']) && isset($data['telephon'])) {
 					Services::getorder($data);
-					location('/');
+					var_dump($data);
 				}
 			}
 
