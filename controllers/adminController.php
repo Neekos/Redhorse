@@ -12,6 +12,8 @@
 
 			$user = User::getUser($userId);
 
+			$orders = admin::order_get();
+
 			if(User::IsNotAdmin()){
 				header("location: /");
 			}

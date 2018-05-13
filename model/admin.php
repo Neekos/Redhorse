@@ -69,5 +69,31 @@
 			$result->execute();
 
 		}
+
+		public static function order_get()
+		{
+			$db = Db::getConnection();
+			$orders = [];
+			$result = $db->query('SELECT * FROM  orders ');
+
+			$i = 0;
+
+			while ($row = $result->fetch()) {
+				$orders[$i]['id'] = $row['id'];
+				$orders[$i]['name']= $row['name'];
+				$orders[$i]['email']= $row['email'];
+				$orders[$i]['telephon']= $row['telephon'];
+				$orders[$i]['product']= $row['product'];
+				$orders[$i]['val1']= $row['val1'];
+				$orders[$i]['val2']= $row['val2'];
+				$orders[$i]['val3']= $row['val3'];
+				$orders[$i]['val6']= $row['val6'];
+				$orders[$i]['datetime_order']= $row['datetime_order'];
+				$orders[$i]['status']= $row['status'];
+				$i++;
+			}
+			return $orders;
+
+		}
 	}
 ?>
