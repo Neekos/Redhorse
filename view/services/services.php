@@ -2,6 +2,7 @@
 	include('/template/header.php');
  ?>
  	<div class="container">
+    <input type="text" name="itog" id="itog">
  		<h1>Категории</h1>
  		<div class="row">
  			<div class="col-md-3">
@@ -90,10 +91,11 @@
                 
                     <p id="p"><input type="radio" name="week" id="radio1" value="val4" readonly checked> Будни: <input type="text" name="val4" id="val4" readonly></input></p>
                     <div id="bk">
-                    <p><input type="radio" name="week" id="radio2" value="val5" readonly> Выходные: <input type="text" name="val5" id="val5" readonly> </input></p>    
+                    <p><input type="radio" name="week" id="radio2" value="val5"  readonly> Выходные: <input type="text" name="val5" id="val5" readonly> </input></p>    
                     </div>
                 </div>
       </div>
+        
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
         <button type="submit" class="btn btn-primary" id="push" data-valprice="<?php $value ?>" name="submit">Отправить</button>
@@ -122,6 +124,7 @@
                     "val3" : $('#val3').val(),
                     "val4" : $('#val4').val(),
                     "val5" : $('#val5').val(),
+                    "val6" : $('#itog').val(),
                 },
                 success : function(data){
                     console.log(data);

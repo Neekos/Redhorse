@@ -44,8 +44,12 @@ $('.mod').click(function(){
 		function checkRadio(){
 			var m = document.getElementsByName('week');
 			for (var i = 0 ; i <m.length; i++) {
-				if (m[i].checked) {
-					console.log(product, val1, val2, val3, m[i]);
+				if (m[0].checked) {
+					$('#itog').val(val4);
+					break;
+				}
+				if (m[1].checked) {
+					$('#itog').val(val5);
 					break;
 				}
 			}
