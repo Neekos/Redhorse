@@ -1,53 +1,53 @@
 <?php 
 
-set_include_path(get_include_path().PATH_SEPARATOR.realpath(__DIR__."/components/")); 
-require_once 'components/config.php';
+// set_include_path(get_include_path().PATH_SEPARATOR.realpath(__DIR__."/components/")); 
+//require_once 'components/config.php';
 //function __autoload($name_class) {require_once $name_class.'.php';} //автозагрузка классов из папки
 
-$object = new stdClass(); // Создаём объект
-foreach( $_REQUEST as $key=>$val )  $object->$key = sanitize($val); //получаем переменные
+// $object = new stdClass(); // Создаём объект
+// foreach( $_REQUEST as $key=>$val )  $object->$key = sanitize($val); //получаем переменные
 
-include('/components/PHPExcel/PHPExcel.php');
+// include('/components/PHPExcel/PHPExcel.php');
 
-include('/components/PHPExcel/PHPExcel/IOFactory.php');
+// include('/components/PHPExcel/PHPExcel/IOFactory.php');
 
-include('/components/PHPExcel/PHPExcel/Reader/Excel2007.php');
-include('/components/PHPExcel/PHPExcel/Reader/DefaultReadFilter.php');
-include('/components/PHPExcel/PHPExcel/Settings.php');
-include('/components/PHPExcel/PHPExcel/Shared/File.php');
-include('/components/PHPExcel/PHPExcel/ReferenceHelper.php');
-include('/components/PHPExcel/PHPExcel/Calculation.php');
-include('/components/PHPExcel/PHPExcel/Calculation/Function.php');
-include('/components/PHPExcel/PHPExcel/CalcEngine/CyclicReferenceStack.php');
-include('/components/PHPExcel/PHPExcel/CalcEngine/Logger.php');
-include('/components/PHPExcel/PHPExcel/Worksheet.php');
-include('/components/PHPExcel/PHPExcel/CachedObjectStorageFactory.php');
-include('/components/PHPExcel/PHPExcel/CachedObjectStorage/Memory.php');
-include('/components/PHPExcel/PHPExcel/Worksheet/PageSetup.php');
-include('/components/PHPExcel/PHPExcel/Worksheet/PageMargins.php');
-include('/components/PHPExcel/PHPExcel/Worksheet/HeaderFooter.php');
-include('/components/PHPExcel/PHPExcel/Worksheet/SheetView.php');
-include('/components/PHPExcel/PHPExcel/Worksheet/Protection.php');
-include('/components/PHPExcel/PHPExcel/Worksheet/RowDimension.php');
-include('/components/PHPExcel/PHPExcel/Worksheet/ColumnDimension.php');
-include('/components/PHPExcel/PHPExcel/Worksheet/AutoFilter.php');
-include('/components/PHPExcel/PHPExcel/DocumentProperties.php');
-include('/components/PHPExcel/PHPExcel/DocumentSecurity.php');
-include('/components/PHPExcel/PHPExcel/Style.php');
-include('/components/PHPExcel/PHPExcel/Style/Font.php');
-include('/components/PHPExcel/PHPExcel/Style/Color.php');
-include('/components/PHPExcel/PHPExcel/Style/Fill.php');
-include('/components/PHPExcel/PHPExcel/Style/Borders.php');
-include('/components/PHPExcel/PHPExcel/Style/Border.php');
-include('/components/PHPExcel/PHPExcel/Style/NumberFormat.php');
-include('/components/PHPExcel/PHPExcel/Style/Alignment.php');
-include('/components/PHPExcel/PHPExcel/Style/Protection.php');
-include('/components/PHPExcel/PHPExcel/Reader/Excel2007/Theme.php');
-include('/components/PHPExcel/PHPExcel/Shared/Date.php');
-include('/components/PHPExcel/PHPExcel/Cell.php');
-include('/components/PHPExcel/PHPExcel/Cell/DataType.php');
-include('/components/PHPExcel/PHPExcel/Cell/DefaultValueBinder.php');
-include('/components/PHPExcel/PHPExcel/WorksheetIterator.php');
+// include('/components/PHPExcel/PHPExcel/Reader/Excel2007.php');
+// include('/components/PHPExcel/PHPExcel/Reader/DefaultReadFilter.php');
+// include('/components/PHPExcel/PHPExcel/Settings.php');
+// include('/components/PHPExcel/PHPExcel/Shared/File.php');
+// include('/components/PHPExcel/PHPExcel/ReferenceHelper.php');
+// include('/components/PHPExcel/PHPExcel/Calculation.php');
+// include('/components/PHPExcel/PHPExcel/Calculation/Function.php');
+// include('/components/PHPExcel/PHPExcel/CalcEngine/CyclicReferenceStack.php');
+// include('/components/PHPExcel/PHPExcel/CalcEngine/Logger.php');
+// include('/components/PHPExcel/PHPExcel/Worksheet.php');
+// include('/components/PHPExcel/PHPExcel/CachedObjectStorageFactory.php');
+// include('/components/PHPExcel/PHPExcel/CachedObjectStorage/Memory.php');
+// include('/components/PHPExcel/PHPExcel/Worksheet/PageSetup.php');
+// include('/components/PHPExcel/PHPExcel/Worksheet/PageMargins.php');
+// include('/components/PHPExcel/PHPExcel/Worksheet/HeaderFooter.php');
+// include('/components/PHPExcel/PHPExcel/Worksheet/SheetView.php');
+// include('/components/PHPExcel/PHPExcel/Worksheet/Protection.php');
+// include('/components/PHPExcel/PHPExcel/Worksheet/RowDimension.php');
+// include('/components/PHPExcel/PHPExcel/Worksheet/ColumnDimension.php');
+// include('/components/PHPExcel/PHPExcel/Worksheet/AutoFilter.php');
+// include('/components/PHPExcel/PHPExcel/DocumentProperties.php');
+// include('/components/PHPExcel/PHPExcel/DocumentSecurity.php');
+// include('/components/PHPExcel/PHPExcel/Style.php');
+// include('/components/PHPExcel/PHPExcel/Style/Font.php');
+// include('/components/PHPExcel/PHPExcel/Style/Color.php');
+// include('/components/PHPExcel/PHPExcel/Style/Fill.php');
+// include('/components/PHPExcel/PHPExcel/Style/Borders.php');
+// include('/components/PHPExcel/PHPExcel/Style/Border.php');
+// include('/components/PHPExcel/PHPExcel/Style/NumberFormat.php');
+// include('/components/PHPExcel/PHPExcel/Style/Alignment.php');
+// include('/components/PHPExcel/PHPExcel/Style/Protection.php');
+// include('/components/PHPExcel/PHPExcel/Reader/Excel2007/Theme.php');
+// include('/components/PHPExcel/PHPExcel/Shared/Date.php');
+// include('/components/PHPExcel/PHPExcel/Cell.php');
+// include('/components/PHPExcel/PHPExcel/Cell/DataType.php');
+// include('/components/PHPExcel/PHPExcel/Cell/DefaultValueBinder.php');
+// include('/components/PHPExcel/PHPExcel/WorksheetIterator.php');
 
 	class Services
 	{
@@ -55,16 +55,20 @@ include('/components/PHPExcel/PHPExcel/WorksheetIterator.php');
 		public static function getorder($data){
 			$db = Db::getConnection();
 
-			$sql = 'INSERT INTO orders (name, email,   telephon) VALUES (:name, :email,  :telephon )';
+		$sql = 'INSERT INTO orders (name, email, telephon, product, val1, val2, val3, val4, val5) VALUES (:name, :email, :telephon, :product, :val1, :val2, :val3, :val4, :val5)';
 
 			$result = $db->prepare($sql);
 			$result->bindParam(':name', $data['name'], PDO::PARAM_STR);
 			$result->bindParam(':email', $data['email'], PDO::PARAM_STR);
-			
 			$result->bindParam(':telephon', $data['telephon'], PDO::PARAM_STR);
+			$result->bindParam(':product', $data['product'], PDO::PARAM_STR);
+			$result->bindParam(':val1', $data['val1'], PDO::PARAM_STR);
+			$result->bindParam(':val2', $data['val2'], PDO::PARAM_STR);
+			$result->bindParam(':val3', $data['val3'], PDO::PARAM_STR);
+			$result->bindParam(':val4', $data['val4'], PDO::PARAM_STR);
+			$result->bindParam(':val5', $data['val5'], PDO::PARAM_STR);
 
 			$result->execute();
-
 		}
 
 		public static function getXLS($xls){

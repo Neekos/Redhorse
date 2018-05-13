@@ -53,13 +53,14 @@
 		</div>
  		</div>
  	</div>
+
     <!-- Modal -->
 <div class="modal fade" id="iiiii" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       
       <div class="modal-header">
-      <form id="form" >
+      <form id="formord">
         <h5 class="modal-title" id="exampleModalLabel">Номер услуги <input type="text" name="val1" id="val1" readonly></input></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -67,14 +68,11 @@
         <center><h3>Запись</h3></center>
         <center><h3><textarea type="text" name="product" id="product" style="width: 100% ; text-align: center;" readonly rows="4" cols="25"></textarea></h3></center>
       </div>
-      <?php var_dump($data); ?>
       <div class="modal-body">
-      
            <div class="form-group">
                     <label for="name">Имя</label>
                     <input type="text" name="name" id="name" class="form-control" value="<?=$name ?>">
                         <span class="help-block"></span>
-                    
                 </div>
                 <div class="form-group">
                     <label for="email">email</label>
@@ -90,99 +88,50 @@
                 <input type="text" name="val2" id="val2" class="form-control" readonly></input>
                 <p>Заморозка: <input type="text" name="val3" id="val3" readonly></input></p>
                 
-                    <p id="p"><input type="radio" name="week" id="radio1" value="<?php $val4 ?>" readonly checked> Будни: <input type="text" name="val4" id="val4" readonly></input></p>
+                    <p id="p"><input type="radio" name="week" id="radio1" value="val4" readonly checked> Будни: <input type="text" name="val4" id="val4" readonly></input></p>
                     <div id="bk">
-                    <p><input type="radio" name="week" id="radio2" value="<?php $val5 ?>" readonly> Выходные: <input type="text" name="val5" id="val5" readonly> </input></p>    
+                    <p><input type="radio" name="week" id="radio2" value="val5" readonly> Выходные: <input type="text" name="val5" id="val5" readonly> </input></p>    
                     </div>
                 </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-        <button type="submit" class="btn btn-primary" name="order" id="push" data-valprice="<?php $value ?>" >Отправить</button>
-
+        <button type="submit" class="btn btn-primary" id="push" data-valprice="<?php $value ?>" name="submit">Отправить</button>
       </form>
-     
       </div>
     </div>
   </div>
 </div>
 <script type="text/javascript">
-  
-  $('.mod').click(function(){
-  var product = $(this).data('product'),
-    val1 = $(this).data('val1'),
-    val2 = $(this).data('val2'),
-    val3 = $(this).data('val3'),
-    val4 = $(this).data('val4'),
-    val5 = $(this).data('val5');
-    
-    if (val3 == 0) {
-      val3 = "нет";
-    };
+        
+       $(document).ready(function(){
 
-    if (val5 == '') {
-      document.getElementById('bk').style.display = "none"
-    }else{
-      document.getElementById('bk').style.display = "block"
-    }
 
-    $('#product').val(product);
-    $('#val1').val(val1);
-    $('#val2').val(val2);
-    $('#val3').val(val3);
-    $('#val4').val(val4);
-    $('#val5').val(val5);
-
-    $("#iiiii").modal();
-    
-
-    console.log(product, val1, val2, val3, val4 , val5);
-
-    var radio = document.getElementsByName('week');
-
-    for (var i = 0; i < radio.length; i++) {
-      radio[i].onchange = testRadio;
-    }
-
-    function testRadio(){
-      console.log(this.value);
-    }
-
-    document.getElementById('push').onclick = checkRadio;
-
-    function checkRadio(){
-      var m = document.getElementsByName('week'),
-      valprice = $(this).data('valprice');
-      for (var i = 0 ; i <m.length; i++) {
-        if (m[i].checked) {
-          valprice = m[i];
-          console.log(product, val1, val2, val3, valprice);
-          break;
-        }
-      }
-    }
-    return false;   
-});
-</script>
-	 <script type="text/javascript">
-      $(document).ready(function(){  
-         
-        $("#form").submit(function(e){  
+        $('#formord').submit(function(e){  
             e.preventDefault();
-             $.ajax({  
-                 type: "POST",  
-                 url: "services.php",  
-                 data:$(this).serialize()}).done(function(){
-           
-                    alert("Спасибо за заявку! Скоро мы с вами свяжемся.");
-
-                 }) ; 
-              
-             return false;  
-        });  
-          
+            $.ajax({
+                url: "services.php",
+                type: "POST",
+                data: {
+                    "name" : $('#name').val(),
+                    "email" : $('#email').val(),
+                    "telephon" : $('#telephon').val(),
+                    "product" : $('#product').val(),
+                    "val1" : $('#val1').val(),
+                    "val2" : $('#val2').val(),
+                    "val3" : $('#val3').val(),
+                    "val4" : $('#val4').val(),
+                    "val5" : $('#val5').val(),
+                },
+                success : function(data){
+                    console.log(data);
+                    alert("Заказ оформлен!");
+                }
+            });
+            return false;
+        });
     });
-     </script>	
+    </script>
  <?php 
 
 	include('/template/footer.php');

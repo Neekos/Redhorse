@@ -58,26 +58,41 @@
 				$telephon = $user['telephon'];
 			}
 			
-			$data = [];
-			if (isset($_POST['submit'])) {
-				
 
+			if (isset($_POST)) {
+				
+				$data = [];
+				
 				if (!empty($_POST['name'])) {
-					$data['name'] = $_POST['name'];
+					$data['name'] = trim($_POST['name']);
 				}
 				if (!empty($_POST['email'])) {
-					$data['email'] = $_POST['email'];
+					$data['email'] = trim($_POST['email']);
 				}
 				if (!empty($_POST['telephon'])) {
-					$data['telephon'] = $_POST['telephon'];
+					$data['telephon'] = trim($_POST['telephon']);
+				}
+				if (!empty($_POST['product'])) {
+					$data['product'] = trim($_POST['product']);
+				}
+				if (!empty($_POST['val1'])) {
+					$data['val1'] = trim($_POST['val1']);
+				}
+				if (!empty($_POST['val2'])) {
+					$data['val2'] = trim($_POST['val2']);
+				}
+				if (!empty($_POST['val3'])) {
+					$data['val3'] = trim($_POST['val3']);
+				}
+				if (!empty($_POST['val4'])) {
+					$data['val4'] = trim($_POST['val4']);
+				}
+				if (!empty($_POST['val5'])) {
+					$data['val5'] = trim($_POST['val5']);
 				}
 				
-				
-				
-
-				if (isset($data['name']) && isset($data['email']) && isset($data['telephon'])) {
+				if (isset($data['name']) && isset($data['email']) && isset($data['telephon']) && isset($data['product']) && isset($data['val1']) && isset($data['val2']) && isset($data['val3']) && isset($data['val4']) && isset($data['val5']) ) {
 					Services::getorder($data);
-					var_dump($data);
 				}
 			}
 

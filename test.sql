@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 09 2018 г., 20:20
+-- Время создания: Май 13 2018 г., 18:16
 -- Версия сервера: 5.6.37
 -- Версия PHP: 5.6.31
 
@@ -231,15 +231,32 @@ INSERT INTO `number_of_lessons` (`id`, `number`) VALUES
 
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `product` varchar(255) NOT NULL,
-  `price` float NOT NULL,
-  `status` enum('0','1') NOT NULL DEFAULT '0',
   `telephon` varchar(255) NOT NULL,
-  `date_of_order` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `product` varchar(255) NOT NULL,
+  `val1` varchar(255) NOT NULL,
+  `val2` varchar(255) NOT NULL,
+  `val3` varchar(255) NOT NULL,
+  `val4` varchar(255) NOT NULL,
+  `val5` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `orders`
+--
+
+INSERT INTO `orders` (`id`, `name`, `email`, `telephon`, `product`, `val1`, `val2`, `val3`, `val4`, `val5`) VALUES
+(1, 'admin', 'admin@mail.ru', '90000000', 'Индивидуальные занятия с тренером для детей и взрослых', '2', 'Абонемент 8 занятий 2 раза в неделю', 'нет', '2900', '3100'),
+(2, 'admin', 'admin@mail.ru', '90000000', 'Индивидуальные занятия с тренером для детей и взрослых', '2', 'Абонемент 8 занятий 2 раза в неделю', 'нет', '2900', '3100'),
+(3, 'admin', 'admin@mail.ru', '90000000', 'Индивидуальные занятия с тренером для детей и взрослых', '2', 'Абонемент 8 занятий 2 раза в неделю', 'нет', '2900', '3100'),
+(4, 'admin', 'admin@mail.ru', '90000000', 'Индивидуальные занятия с тренером для детей и взрослых', '2', 'Абонемент 8 занятий 2 раза в неделю', 'нет', '2900', '3100'),
+(5, 'admin', 'admin@mail.ru', '90000000', 'Развивающие занятия для детей от 2-х лет по программе «Я люблю свою лошадку». Пони-клуб (для детей с 5 до 8 лет)', '12', '1 занятие', 'нет', '650', '700'),
+(6, 'admin', 'admin@mail.ru', '90000000', 'Развивающие занятия для детей от 2-х лет по программе «Я люблю свою лошадку». Пони-клуб (для детей с 5 до 8 лет)', '13', 'Абонемент 4 занятия (месяц)', 'нет', '2400', '2600'),
+(7, 'admin', 'admin@mail.ru', '90000000', 'Развивающие занятия для детей от 2-х лет по программе «Я люблю свою лошадку». Пони-клуб (для детей с 5 до 8 лет)', '15', 'Абонемент Без лимитный 30 занятий (месяц)', '15 дней', '5100', 'нет'),
+(8, 'admin', 'admin@mail.ru', '90000000', 'Развивающие занятия для детей от 2-х лет по программе «Я люблю свою лошадку». Пони-клуб (для детей с 5 до 8 лет)', '16', 'Абонемент 16 занятий (месяц)', '15 дней', '6400', 'нет'),
+(9, 'admin', 'admin@mail.ru', '90000000', 'Развивающие занятия для детей от 2-х лет по программе «Я люблю свою лошадку». Пони-клуб (для детей с 5 до 8 лет)', '17', 'Абонемент Без лимитный 30 занятий (месяц)', '15 дней', '10500', 'нет'),
+(10, 'admin', 'admin@mail.ru', '90000000', 'Развивающие занятия для детей от 2-х лет по программе «Я люблю свою лошадку». Пони-клуб (для детей с 5 до 8 лет)', '14', 'Абонемент 8 занятий 2 раза в неделю', 'нет', '3800', '4200');
 
 -- --------------------------------------------------------
 
@@ -464,8 +481,7 @@ ALTER TABLE `number_of_lessons`
 -- Индексы таблицы `orders`
 --
 ALTER TABLE `orders`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_user` (`id_user`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Индексы таблицы `order_list`
@@ -558,12 +574,12 @@ ALTER TABLE `image`
 -- AUTO_INCREMENT для таблицы `number_of_lessons`
 --
 ALTER TABLE `number_of_lessons`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT для таблицы `order_list`
 --
@@ -588,7 +604,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT для таблицы `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT для таблицы `type`
 --
@@ -602,12 +618,6 @@ ALTER TABLE `user`
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --
-
---
--- Ограничения внешнего ключа таблицы `orders`
---
-ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `products`
