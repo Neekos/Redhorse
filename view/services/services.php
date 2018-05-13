@@ -122,8 +122,6 @@
                     "val1" : $('#val1').val(),
                     "val2" : $('#val2').val(),
                     "val3" : $('#val3').val(),
-                    "val4" : $('#val4').val(),
-                    "val5" : $('#val5').val(),
                     "val6" : $('#itog').val(),
                 },
                 success : function(data){

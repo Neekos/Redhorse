@@ -84,14 +84,11 @@
 				if (!empty($_POST['val3'])) {
 					$data['val3'] = trim($_POST['val3']);
 				}
-				if (!empty($_POST['val4'])) {
-					$data['val4'] = trim($_POST['val4']);
-				}
-				if (!empty($_POST['val5'])) {
-					$data['val5'] = trim($_POST['val5']);
+				if (!empty($_POST['val6'])) {
+					$data['val6'] = trim($_POST['val6']);
 				}
 				
-				if (isset($data['name']) && isset($data['email']) && isset($data['telephon']) && isset($data['product']) && isset($data['val1']) && isset($data['val2']) && isset($data['val3']) && isset($data['val4']) && isset($data['val5']) ) {
+				if (isset($data['name']) && isset($data['email']) && isset($data['telephon']) && isset($data['product']) && isset($data['val1']) && isset($data['val2']) && isset($data['val3']) && isset($data['val6']) ) {
 					Services::getorder($data);
 				}
 			}

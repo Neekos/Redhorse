@@ -55,7 +55,7 @@
 		public static function getorder($data){
 			$db = Db::getConnection();
 
-		$sql = 'INSERT INTO orders (name, email, telephon, product, val1, val2, val3, val4, val5) VALUES (:name, :email, :telephon, :product, :val1, :val2, :val3, :val4, :val5)';
+		$sql = 'INSERT INTO orders (name, email, telephon, product, val1, val2, val3, val6) VALUES (:name, :email, :telephon, :product, :val1, :val2, :val3, :val6)';
 
 			$result = $db->prepare($sql);
 			$result->bindParam(':name', $data['name'], PDO::PARAM_STR);
@@ -65,8 +65,7 @@
 			$result->bindParam(':val1', $data['val1'], PDO::PARAM_STR);
 			$result->bindParam(':val2', $data['val2'], PDO::PARAM_STR);
 			$result->bindParam(':val3', $data['val3'], PDO::PARAM_STR);
-			$result->bindParam(':val4', $data['val4'], PDO::PARAM_STR);
-			$result->bindParam(':val5', $data['val5'], PDO::PARAM_STR);
+			$result->bindParam(':val6', $data['val6'], PDO::PARAM_STR);
 
 			$result->execute();
 		}
