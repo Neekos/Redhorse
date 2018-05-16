@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 13 2018 г., 21:01
+-- Время создания: Май 16 2018 г., 09:05
 -- Версия сервера: 5.6.37
 -- Версия PHP: 5.6.31
 
@@ -34,7 +34,7 @@ CREATE TABLE `article` (
   `discription` varchar(255) NOT NULL,
   `text` varchar(255) NOT NULL,
   `img` varchar(255) DEFAULT NULL,
-  `date_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `date_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -42,12 +42,12 @@ CREATE TABLE `article` (
 --
 
 INSERT INTO `article` (`id`, `title`, `discription`, `text`, `img`, `date_time`) VALUES
-(1, 'Изучаем Slim', 'Изучение правил и ....', 'Тут текст', '', '2018-04-10 09:30:06'),
-(2, 'Новая статья', 'Тут может быть что угодно ', 'тут текст', '', '2018-04-17 10:00:13'),
-(3, 'Хорошая новость', 'Описание новости', 'длыовадлфоываждлофывжалдофывдлаофдылвоа', 'images/photo', '2018-04-16 13:12:10'),
-(4, 'Плохая новость ', 'Тут описание плохой новсти', 'дфовыафроушоадфоуащожфыоуаодфоуаожауофдлафошыовадолывапжок пожыкопжоыькщпацщшкгщцгмщышвзащсэывщызщшплмпщзцбысэщашпщылбсщпл', 'images/photo', '2018-04-15 13:18:12'),
-(5, 'Отображение времен', 'описание', 'фдлоадфываождо', '/image', '2018-04-14 14:15:23'),
-(6, 'Автоматическое время', 'Описане', 'текст', 'картинка', '2018-04-18 15:49:49');
+(1, 'Изучаем Slim', 'Изучение правил и ....', 'Тут текст', '', '2018-04-10 02:30:06'),
+(2, 'Новая статья', 'Тут может быть что угодно ', 'тут текст', '', '2018-04-17 03:00:13'),
+(3, 'Хорошая новость', 'Описание новости', 'длыовадлфоываждлофывжалдофывдлаофдылвоа', 'images/photo', '2018-04-16 06:12:10'),
+(4, 'Плохая новость ', 'Тут описание плохой новсти', 'дфовыафроушоадфоуащожфыоуаодфоуаожауофдлафошыовадолывапжок пожыкопжоыькщпацщшкгщцгмщышвзащсэывщызщшплмпщзцбысэщашпщылбсщпл', 'images/photo', '2018-04-15 06:18:12'),
+(5, 'Отображение времен', 'описание', 'фдлоадфываождо', '/image', '2018-04-14 07:15:23'),
+(6, 'Автоматическое время', 'Описане', 'текст', 'картинка', '2018-04-18 08:49:49');
 
 -- --------------------------------------------------------
 
@@ -157,6 +157,11 @@ CREATE TABLE `contact` (
 
 INSERT INTO `contact` (`id`, `name`, `email`, `telephon`, `message`) VALUES
 (0, 'Андрей', 'Nk@mail.ru', '89345040564', 'Оставил сообщение!'),
+(0, 'sdf', 'sdfsdf@mail.ru', 'sdfs', 'sdfdsf'),
+(0, 'dklfjlk', 'L@MAIL.RU', 'LKJL', 'FDKJ.LK'),
+(0, 'Андрей', 'Nk@mail.ru', '89345040564', 'Оставил сообщение!'),
+(0, 'sdf', 'sdfsdf@mail.ru', 'sdfs', 'sdfdsf'),
+(0, 'Андрей', 'Nk@mail.ru', '89345040564', 'Оставил сообщение!'),
 (0, 'sdf', 'sdfsdf@mail.ru', 'sdfs', 'sdfdsf');
 
 -- --------------------------------------------------------
@@ -188,7 +193,7 @@ CREATE TABLE `image` (
   `id` int(11) NOT NULL,
   `title` varchar(60) NOT NULL,
   `img` varchar(255) NOT NULL,
-  `date_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `date_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -196,9 +201,9 @@ CREATE TABLE `image` (
 --
 
 INSERT INTO `image` (`id`, `title`, `img`, `date_time`) VALUES
-(1, 'Новое фото', '/template/images/06-funny-cat-wallpapercat-wallpaper.jpg', '2018-05-04 17:21:32'),
-(2, 'Второе фото', '/template/images/6.jpg', '2018-05-04 17:24:25'),
-(3, 'Лошадка', '/template/images/1.jpg', '2018-05-04 17:43:41');
+(1, 'Новое фото', '/template/images/06-funny-cat-wallpapercat-wallpaper.jpg', '2018-05-04 10:21:32'),
+(2, 'Второе фото', '/template/images/6.jpg', '2018-05-04 10:24:25'),
+(3, 'Лошадка', '/template/images/1.jpg', '2018-05-04 10:43:41');
 
 -- --------------------------------------------------------
 
@@ -239,16 +244,19 @@ CREATE TABLE `orders` (
   `val2` varchar(255) NOT NULL,
   `val3` varchar(255) NOT NULL,
   `val6` varchar(255) NOT NULL,
-  `datetime_order` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `datetime_order` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` enum('0','1') NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `orders`
 --
 
-INSERT INTO `orders` (`id`, `name`, `email`, `telephon`, `product`, `val1`, `val2`, `val3`, `val6`, `datetime_order`) VALUES
-(1, 'admin', 'admin@mail.ru', '90000000', 'Индивидуальные занятия с тренером для детей и взрослых', '2', 'Абонемент 8 занятий 2 раза в неделю', 'нет', '2900', '2018-05-13 18:01:04'),
-(2, 'admin', 'admin@mail.ru', '90000000', 'Индивидуальные занятия с тренером для детей и взрослых', '2', 'Абонемент 8 занятий 2 раза в неделю', 'нет', '3100', '2018-05-13 18:01:04');
+INSERT INTO `orders` (`id`, `name`, `email`, `telephon`, `product`, `val1`, `val2`, `val3`, `val6`, `datetime_order`, `status`) VALUES
+(1, 'admin', 'admin@mail.ru', '90000000', 'Развивающие занятия для детей от 2-х лет по программе «Я люблю свою лошадку». Пони-клуб (для детей с 5 до 8 лет)', '15', 'Абонемент Без лимитный 30 занятий (месяц)', '15 дней', '5100', '2018-05-16 06:04:24', '0'),
+(2, 'admin', 'admin@mail.ru', '90000000', 'Развивающие занятия для детей от 2-х лет по программе «Я люблю свою лошадку». Пони-клуб (для детей с 5 до 8 лет)', '12', '1 занятие', 'нет', '700', '2018-05-16 06:04:35', '0'),
+(3, 'admin', 'admin@mail.ru', '90000000', 'Индивидуальные занятия с тренером для детей и взрослых', '4', 'Абонемент 16 занятий (месяц)', '15 дней', '10000', '2018-05-16 06:04:46', '0'),
+(4, 'admin', 'admin@mail.ru', '90000000', 'Развивающие занятия для детей от 2-х лет по программе «Я люблю свою лошадку». Пони-клуб (для детей с 5 до 8 лет)', '16', 'Абонемент 16 занятий (месяц)', '15 дней', '6400', '2018-05-16 06:05:03', '0');
 
 -- --------------------------------------------------------
 
@@ -302,7 +310,7 @@ INSERT INTO `products` (`id`, `id_services`, `zam`, `id_number`, `price_weekdays
 CREATE TABLE `review` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
-  `dat` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `dat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `msg` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -311,11 +319,11 @@ CREATE TABLE `review` (
 --
 
 INSERT INTO `review` (`id`, `username`, `dat`, `msg`) VALUES
-(1, 'Паша', '2018-05-01 18:22:44', 'Что все сложно!'),
-(2, 'asdfa', '2018-05-10 00:19:06', 'asdf'),
-(3, 'asdfa', '2018-05-10 00:19:06', 'asdf'),
-(4, 'asdfa', '2018-05-10 00:19:09', 'asdf'),
-(5, 'asdfa', '2018-05-10 00:19:09', 'asdf');
+(1, 'Паша', '2018-05-01 11:22:44', 'Что все сложно!'),
+(2, 'asdfa', '2018-05-09 17:19:06', 'asdf'),
+(3, 'asdfa', '2018-05-09 17:19:06', 'asdf'),
+(4, 'asdfa', '2018-05-09 17:19:09', 'asdf'),
+(5, 'asdfa', '2018-05-09 17:19:09', 'asdf');
 
 -- --------------------------------------------------------
 
@@ -411,7 +419,7 @@ CREATE TABLE `user` (
   `email` varchar(255) NOT NULL,
   `telephon` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `date_join` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_join` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `role` enum('0','1') NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -420,8 +428,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `surname`, `middlename`, `email`, `telephon`, `password`, `date_join`, `role`) VALUES
-(1, 'user', 'user', 'user', 'user@mail.ru', '900000000', 'ee11cbb19052e40b07aac0ca060c23ee', '2018-04-27 15:52:41', '0'),
-(2, 'admin', 'admin', 'admin', 'admin@mail.ru', '90000000', '21232f297a57a5a743894a0e4a801fc3', '2018-04-27 15:53:12', '1');
+(1, 'user', 'user', 'user', 'user@mail.ru', '900000000', 'ee11cbb19052e40b07aac0ca060c23ee', '2018-04-27 08:52:41', '0'),
+(2, 'admin', 'admin', 'admin', 'admin@mail.ru', '90000000', '21232f297a57a5a743894a0e4a801fc3', '2018-04-27 08:53:12', '1');
 
 --
 -- Индексы сохранённых таблиц
@@ -571,7 +579,7 @@ ALTER TABLE `number_of_lessons`
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT для таблицы `order_list`
 --
